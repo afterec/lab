@@ -105,7 +105,7 @@
   }
   .rings{display:grid;grid-template-columns:1fr 1fr;gap:2.8rem;width:100%;align-items:start}
   .ring{display:flex;flex-direction:column;align-items:flex-start}
-  .ring svg{width:min(78%,230px);height:auto;display:block;margin-bottom:1.1rem}
+  .ring svg{width:min(78%,230px);height:auto;display:block;margin-bottom:1.1rem;overflow:visible}
   .ring .rnum{font-family:var(--sans);font-weight:300;font-size:30px;letter-spacing:-.01em}
   .ring.a .rnum{fill:#ff7a45}
   .ring.b .rnum{fill:var(--red-soft)}
@@ -253,8 +253,14 @@
         <div class="rings">
           <div class="ring a">
             <svg viewBox="0 0 120 120" role="img" aria-label="91% das empresas usam vídeo como ferramenta de marketing">
+              <defs>
+                <filter id="glowA" x="-80%" y="-80%" width="260%" height="260%">
+                  <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#ff7a45" flood-opacity=".5"/>
+                  <feDropShadow dx="0" dy="0" stdDeviation="20" flood-color="#ff7a45" flood-opacity=".3"/>
+                </filter>
+              </defs>
               <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(244,242,238,.08)" stroke-width="9"/>
-              <circle cx="60" cy="60" r="52" fill="none" stroke="#ff7a45" stroke-width="9" stroke-linecap="round" stroke-dasharray="297.3 326.7" transform="rotate(-90 60 60)" filter="drop-shadow(0 0 10px rgba(255,122,69,.45))"/>
+              <circle cx="60" cy="60" r="52" fill="none" stroke="#ff7a45" stroke-width="9" stroke-linecap="round" stroke-dasharray="297.3 326.7" transform="rotate(-90 60 60)" filter="url(#glowA)"/>
               <text class="rnum" x="60" y="70" text-anchor="middle" font-family="Inter,Arial,sans-serif">91%</text>
             </svg>
             <span class="rsub">das empresas já usam vídeo como ferramenta de marketing <em>(Wyzowl)</em></span>
@@ -265,8 +271,14 @@
           </div>
           <div class="ring b">
             <svg viewBox="0 0 120 120" role="img" aria-label="62% dos consumidores ficam com perceção negativa da marca ao ver um vídeo de má qualidade">
+              <defs>
+                <filter id="glowB" x="-80%" y="-80%" width="260%" height="260%">
+                  <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#f90000" flood-opacity=".55"/>
+                  <feDropShadow dx="0" dy="0" stdDeviation="20" flood-color="#f90000" flood-opacity=".32"/>
+                </filter>
+              </defs>
               <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(244,242,238,.08)" stroke-width="9"/>
-              <circle cx="60" cy="60" r="52" fill="none" stroke="#f90000" stroke-width="9" stroke-linecap="round" stroke-dasharray="202.6 326.7" transform="rotate(-90 60 60)" filter="drop-shadow(0 0 10px rgba(249,0,0,.5))"/>
+              <circle cx="60" cy="60" r="52" fill="none" stroke="#f90000" stroke-width="9" stroke-linecap="round" stroke-dasharray="202.6 326.7" transform="rotate(-90 60 60)" filter="url(#glowB)"/>
               <text class="rnum" x="60" y="70" text-anchor="middle" font-family="Inter,Arial,sans-serif">62%</text>
             </svg>
             <span class="rsub">dos consumidores ficam com uma perceção negativa da marca ao ver um vídeo de má qualidade <em>(Brightcove)</em></span>
