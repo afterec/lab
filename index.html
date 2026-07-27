@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AfteREC Lab — Apresentação do Serviço</title>
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#161618;
+    --bg-2:#1e1e21;
+    --ink:#f4f2ee;
+    --ink-dim:#b6b3ad;
+    --red:#f90000;
+    --red-soft:#ff3b30;
+    --red-dim:rgba(249,0,0,.4);
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Inter',-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:var(--sans);font-weight:300;
+    overflow-x:hidden;
+  }
+  main{
+    height:100vh;overflow-y:scroll;
+    scroll-snap-type:y mandatory;
+  }
+  section.slide{
+    height:100vh;width:100%;
+    scroll-snap-align:start;scroll-snap-stop:always;
+    position:relative;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .kicker{
+    font-family:var(--sans);font-size:.72rem;font-weight:500;
+    letter-spacing:.32em;text-transform:uppercase;color:var(--red-soft);
+    margin-bottom:1.6rem;
+  }
+  h1,h2{font-family:var(--serif);font-weight:300;line-height:1.08}
+  h1{font-size:clamp(2.8rem,6.2vw,5.4rem)}
+  h2{font-size:clamp(2rem,4.2vw,3.6rem);margin-bottom:1.6rem}
+  h2 em{font-style:italic;color:var(--red-soft)}
+  p.body{
+    font-size:clamp(.95rem,1.25vw,1.12rem);line-height:1.75;
+    color:var(--ink-dim);max-width:36em;
+  }
+  p.body strong{color:var(--ink);font-weight:400}
+  .num{
+    position:absolute;top:2.4rem;left:3rem;z-index:5;
+    font-family:var(--sans);font-size:.7rem;letter-spacing:.25em;
+    color:rgba(244,242,238,.4);
+  }
+  /* ---------- hero (capa + final) ---------- */
+  .hero .bgimg{position:absolute;inset:0;background-size:cover;background-position:center;}
+  .hero .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,22,24,.3) 0%,rgba(22,22,24,.55) 55%,rgba(22,22,24,.92) 100%)}
+  .hero .content{position:relative;z-index:2;text-align:center;padding:0 6vw}
+  .hero h1,.hero h2,.hero .sub,.hero p.body{text-shadow:0 2px 28px rgba(0,0,0,.65)}
+  .rule{width:56px;height:1px;background:var(--red);margin:2.2rem auto}
+  .hero .sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2vw,1.6rem);color:var(--ink)}
+  /* capa: alinhada à esquerda e ao topo, com animação de entrada */
+  section.slide.capa{align-items:flex-start}
+  .capa .veil{background:linear-gradient(90deg,rgba(22,22,24,.78) 0%,rgba(22,22,24,.38) 42%,rgba(22,22,24,.04) 72%),linear-gradient(180deg,transparent 55%,rgba(22,22,24,.82) 100%)}
+  .capa .content{width:100%;max-width:1280px;padding:0 7vw;text-align:left;margin-top:9vh}
+  @keyframes fadeup{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  .capa .logo,.capa h1,.capa .rule,.capa .sub{opacity:0;animation:fadeup .9s ease forwards}
+  .capa .logo{animation-delay:.15s}
+  .capa h1{animation-delay:.45s}
+  .capa .rule{animation-delay:.7s}
+  .capa .sub{animation-delay:.9s}
+  .capa .logo{width:min(280px,46vw);height:auto;display:block;margin:0 0 .9rem}
+  .capa h1{
+    font-family:var(--sans);font-weight:400;
+    font-size:clamp(.95rem,1.6vw,1.35rem);
+    letter-spacing:.58em;text-transform:uppercase;color:var(--ink);
+    margin-left:.15em;
+  }
+  .capa .rule{margin:2rem 0}
+  /* ---------- split layout ---------- */
+  /* section.slide (flex) tem especificidade maior que .split; este seletor garante o grid.
+     align-items:stretch é obrigatório: o center herdado do slide colapsa o painel de media
+     (que só tem filhos absolutos) para altura zero. */
+  section.slide.split{display:grid;grid-template-columns:47% 53%;grid-template-rows:100%;align-items:stretch;justify-content:stretch;width:100%;height:100%}
+  .split .text{
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 4.5vw;background:var(--bg);
+  }
+  .split .media{position:relative;background:var(--bg-2)}
+  .split .media .bgimg{position:absolute;inset:0;background-size:cover;background-position:center}
+  .split .media .grad{position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,transparent 18%)}
+  section.slide.split.rev{grid-template-columns:53% 47%}
+  .split.rev .media .grad{background:linear-gradient(270deg,var(--bg) 0%,transparent 18%)}
+  /* ---------- painel do mercado (slide 3), dois números ---------- */
+  .compare{
+    position:absolute;inset:0;background:var(--bg-2);
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 3.4vw;
+  }
+  .chart{display:grid;grid-template-columns:1fr 1.15fr;gap:2.6rem;align-items:end;width:100%}
+  .ccol{display:flex;flex-direction:column;justify-content:flex-end}
+  .cbig{font-family:var(--sans);font-weight:300;display:block;font-size:clamp(2rem,3.4vw,3.2rem);line-height:1;letter-spacing:-.01em}
+  .ccol.sem .cbig{color:var(--ink-dim)}
+  .ccol.com .cbig{color:var(--red-soft);text-shadow:0 0 34px rgba(249,0,0,.4)}
+  .csub{display:block;font-size:.75rem;color:var(--ink-dim);line-height:1.5;margin-top:.4rem;max-width:24em}
+  .csub em{font-style:normal;color:rgba(244,242,238,.45)}
+  .stem{border-left:1px dashed rgba(244,242,238,.3);margin:.7rem 0 0 5px}
+  .ccol.sem .stem{height:24px}
+  .ccol.com .stem{height:24px;border-color:var(--red-dim)}
+  .cbar{width:100%;clip-path:polygon(0 0,74% 0,100% 26%,100% 100%,0 100%)}
+  .ccol.sem .cbar{height:170px;background:linear-gradient(180deg,rgba(244,242,238,.85) 0,rgba(244,242,238,.22) 4px,rgba(244,242,238,0) 100%)}
+  .ccol.com .cbar{height:236px;background:linear-gradient(180deg,#f90000 0,rgba(249,0,0,.45) 5px,rgba(249,0,0,0) 100%);filter:drop-shadow(0 -6px 30px rgba(249,0,0,.3))}
+  .ccol ul{list-style:none;margin-top:1.2rem;display:flex;flex-direction:column;gap:.45rem}
+  .ccol li{font-size:.78rem;line-height:1.5;color:var(--ink-dim);padding-left:.9rem;position:relative}
+  .ccol li:before{content:'·';position:absolute;left:0;color:var(--red-soft)}
+  .ccol.sem li:before{color:var(--ink-dim)}
+  .fonte{margin-top:1.6rem;font-size:.72rem;color:rgba(244,242,238,.45)}
+  /* ---------- full-bleed statement ---------- */
+  .statement{background:var(--bg)}
+  .statement .content{max-width:1040px;padding:0 2rem;text-align:center}
+  .statement p.body{margin:0 auto}
+  /* ---------- process ---------- */
+  .process .content{max-width:1080px;width:100%;padding:0 6vw}
+  .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:3rem 0 2.4rem;position:relative}
+  .timeline:before{content:'';position:absolute;top:7px;left:2%;right:2%;height:1px;background:var(--red-dim)}
+  .step{position:relative;padding:2rem 1.6rem 0 0}
+  .step:before{content:'';position:absolute;top:0;left:0;width:15px;height:15px;border-radius:50%;border:1px solid var(--red-soft);background:var(--bg)}
+  .step h4{font-family:var(--serif);font-weight:400;font-size:1.35rem;margin-bottom:.5rem}
+  .step p{font-size:.8rem;line-height:1.6;color:var(--ink-dim)}
+  .badge{
+    display:inline-block;border:1px solid var(--red-dim);border-radius:1.4rem;
+    padding:.6rem 1.6rem;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red-soft);
+    text-align:center;line-height:1.5;
+  }
+  .badge small{display:block;font-size:.6rem;letter-spacing:.16em;color:var(--ink-dim)}
+  /* ---------- pacotes ---------- */
+  .pacotes .content{max-width:1180px;width:100%;padding:0 5vw}
+  .pk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:2.6rem;max-width:960px}
+  .pk{
+    border:1px solid rgba(244,242,238,.13);border-radius:4px;
+    padding:1.8rem 1.5rem;display:flex;flex-direction:column;gap:1rem;
+    background:var(--bg-2);position:relative;
+  }
+  .pk.destaque{border-color:var(--red-dim)}
+  .pk .tag{
+    position:absolute;top:-.7rem;right:1rem;
+    background:var(--red);color:#fff;border-radius:2rem;
+    font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    padding:.3rem .8rem;
+  }
+  .pk li strong{color:var(--ink);font-weight:500}
+  .pk h4{font-family:var(--serif);font-weight:400;font-size:1.55rem}
+  .pk .preco{font-family:var(--sans);font-size:.92rem;font-weight:500;color:var(--red-soft);letter-spacing:.04em}
+  .pk ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+  .pk li{font-size:.82rem;line-height:1.5;color:var(--ink-dim);padding-left:1rem;position:relative}
+  .pk li:before{content:'·';position:absolute;left:0;color:var(--red-soft)}
+  .pk .quem{margin-top:auto;font-size:.72rem;letter-spacing:.06em;color:rgba(244,242,238,.45);font-style:italic}
+  .pk-note{margin-top:2.2rem;font-size:.85rem;line-height:1.7;color:var(--ink-dim);max-width:52em}
+  .pk-note a{color:var(--red-soft);text-decoration:none;border-bottom:1px solid var(--red-dim)}
+  /* ---------- CTA final ---------- */
+  .cta .veil{background:linear-gradient(180deg,rgba(22,22,24,.55) 0%,rgba(22,22,24,.75) 50%,rgba(22,22,24,.94) 100%)}
+  .cta .content{position:relative;z-index:2;text-align:center;padding:0 6vw;max-width:860px}
+  .btn{
+    display:inline-block;margin-top:2.6rem;
+    background:var(--red);color:#fff;text-decoration:none;
+    font-family:var(--sans);font-weight:500;font-size:.8rem;
+    letter-spacing:.22em;text-transform:uppercase;
+    padding:1.1rem 2.8rem;border-radius:2px;
+    transition:opacity .25s;
+  }
+  .btn:hover{opacity:.85}
+  .contacts{margin-top:2.8rem;font-size:.85rem;letter-spacing:.06em;color:var(--ink-dim);line-height:2}
+  .contacts a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--red-dim)}
+  /* ---------- seta de continuar ---------- */
+  a.downarrow{
+    position:fixed;bottom:1.6rem;left:50%;transform:translateX(-50%);
+    z-index:60;width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+    color:var(--ink);opacity:.85;transition:opacity .3s,color .2s;
+    animation:arrowfloat 2.2s ease-in-out infinite;
+  }
+  a.downarrow:hover{color:var(--red-soft)}
+  a.downarrow.hidden{opacity:0;pointer-events:none}
+  a.downarrow svg{width:26px;height:26px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
+  @keyframes arrowfloat{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+  /* ---------- dots nav ---------- */
+  nav.dots{
+    position:fixed;right:1.4rem;top:50%;transform:translateY(-50%);
+    z-index:50;display:flex;flex-direction:column;gap:.7rem;
+  }
+  nav.dots a{width:7px;height:7px;border-radius:50%;background:rgba(244,242,238,.25);transition:.2s}
+  nav.dots a.active{background:var(--red);transform:scale(1.35)}
+  /* ---------- responsive (telemóvel: página fluida, sem slides fixos) ---------- */
+  @media(max-width:860px){
+    main{height:auto;overflow-y:visible;scroll-snap-type:none}
+    section.slide{height:auto;min-height:0;scroll-snap-align:none;scroll-snap-stop:normal;padding:4.5rem 0 3.5rem}
+    section.slide.hero{height:100vh;height:100svh;min-height:540px;padding:0}
+    .hero .bgimg{background-position:65% center}
+    /* split: coluna única, media primeiro com altura própria */
+    section.slide.split,section.slide.split.rev{display:flex;flex-direction:column;height:auto}
+    .split .text{padding:2.2rem 7vw 0}
+    .split .media{order:-1;width:100%;height:44vh;min-height:280px}
+    .split .media .grad,.split.rev .media .grad{background:linear-gradient(0deg,var(--bg) 0%,transparent 22%)}
+    /* painel do mercado dimensiona-se ao conteúdo */
+    #s3 .media{height:auto;min-height:0}
+    .compare{position:relative;inset:auto;padding:2.5rem 7vw 0}
+    .statement .content,.process .content,.pacotes .content{padding:0 7vw}
+    .timeline{grid-template-columns:1fr;gap:1rem}
+    /* linha vertical a ligar as bolinhas no telemóvel */
+    .timeline:before{left:7px;right:auto;top:10px;bottom:24px;width:1px;height:auto}
+    .step{padding:0 0 0 2rem}
+    .step:before{top:2px}
+    .num{left:1.4rem;top:1.6rem}
+    nav.dots{display:none}
+    .pk-grid{grid-template-columns:1fr}
+    .chart{gap:1.6rem}
+    .capa .content{margin-top:14vh}
+    .capa .sub .subq{display:block}
+  }
+</style>
+</head>
+<body>
+<main id="deck">
+
+  <!-- 01 · CAPA -->
+  <section class="slide hero capa" id="s1">
+    <div class="bgimg" style="background-image:url('img/01-capa.jpg')"></div>
+    <div class="veil"></div>
+    <div class="content">
+      <img class="logo" src="img/00-logo-branco.png" alt="AfteREC">
+      <h1>Lab</h1>
+      <div class="rule"></div>
+      <p class="sub">Consultoria criativa <span class="subq">para quem produz os próprios conteúdos.</span></p>
+    </div>
+  </section>
+
+  <!-- 02 · O QUE É O LAB -->
+  <section class="slide statement" id="s2">
+    <div class="num">02 · O LAB</div>
+    <div class="content">
+      <div class="kicker">O que é o Lab</div>
+      <h2>Uma aula conversada, <em>com quem faz</em>.</h2>
+      <p class="body">O AfteREC Lab transforma ideias soltas num <strong>plano audiovisual claro e executável</strong>. Não gravamos nem entregamos vídeo: damos a direção, e você executa, com o plano tal como está ou adaptando-o. O formato é uma <strong>aula conversada</strong>: aprende enquanto conversa com quem está na área há anos. Começamos por avaliar o seu ponto de partida, o que já fez, a noção que tem de luz, imagem, edição e produção, e a partir daí mostramos onde o seu conteúdo pode melhorar.<br><br>Serve <strong>criadores de conteúdo, equipas internas de marketing, empresas e fundadores</strong>: quem já produz e quer sistematizar e subir a qualidade, e quem está a começar e precisa de perceber o que produzir e como, sem gastar onde não é preciso.</p>
+    </div>
+  </section>
+
+  <!-- 03 · O MERCADO -->
+  <section class="slide split rev" id="s3">
+    <div class="num">03 · O MERCADO</div>
+    <div class="media">
+      <div class="compare">
+        <div class="chart">
+          <div class="ccol sem">
+            <span class="cbig">91%</span>
+            <span class="csub">das empresas já usam vídeo como ferramenta de marketing <em>(Wyzowl)</em></span>
+            <div class="stem"></div>
+            <div class="cbar"></div>
+            <ul>
+              <li>Toda a gente publica</li>
+              <li>A maioria produz internamente, sem direção</li>
+            </ul>
+          </div>
+          <div class="ccol com">
+            <span class="cbig">62%</span>
+            <span class="csub">dos consumidores ficam com uma perceção negativa da marca ao ver um vídeo de má qualidade <em>(Brightcove)</em></span>
+            <div class="stem"></div>
+            <div class="cbar"></div>
+            <ul>
+              <li>60% deixam de interagir com a marca</li>
+              <li>23% hesitam em comprar</li>
+            </ul>
+          </div>
+        </div>
+        <p class="fonte">Fontes: Wyzowl, State of Video Marketing. Brightcove, estudo de perceção de qualidade de vídeo.</p>
+      </div>
+    </div>
+    <div class="text">
+      <div class="kicker">Porque é que isto importa</div>
+      <h2>Produzir já não é opcional. <em>Produzir mal sai caro</em>.</h2>
+      <p class="body">O vídeo passou a ser o formato por defeito da comunicação: <strong>91% das empresas usam vídeo como ferramenta de marketing</strong> (Wyzowl), e os criadores nunca publicaram tanto. Mas a corrida ao volume tem um custo escondido: <strong>62% dos consumidores ficam com uma perceção negativa da marca quando veem um vídeo de má qualidade</strong> (Brightcove), e a maioria deixa de interagir a seguir.<br><br>O problema raramente é o equipamento: é a falta de direção. Luz mal posta, som com eco, formato errado para o canal, guiões que não seguram ninguém. Cada conteúdo publicado está a construir ou a desgastar a sua imagem, e a diferença entre uma coisa e a outra é saber o que se está a fazer.</p>
+    </div>
+  </section>
+
+  <!-- 04 · PORQUÊ A AFTEREC -->
+  <section class="slide statement" id="s4">
+    <div class="num">04 · PORQUÊ A AFTEREC</div>
+    <div class="content">
+      <div class="kicker">Porquê trabalhar connosco</div>
+      <h2>Quem ensina é <em>quem produz</em>.</h2>
+      <p class="body">A direção que recebe no Lab vem de quem passa o resto da semana em rodagem: a AfteREC produz cinema, videoclipes e conteúdos para empresas, e é essa experiência real que entra em cada sessão, não teoria tirada de um curso. Vemos os seus exemplos, percebemos o que está a travar a qualidade e dizemos exatamente o que mudar.<br><br>A nossa filosofia é ensiná-lo a <strong>não gastar de mais</strong>. Um projeto não precisa de ser elaborado nem cheio de ideias complexas para ter impacto: muitas vezes um projeto simples tem exatamente o efeito pretendido. Ajudamos a articular a ideia, a perceber o que encarece e o que baratece um trabalho, e a decidir o que vale a pena pedir a uma produtora, e o que consegue fazer por si.</p>
+    </div>
+  </section>
+
+  <!-- 05 · COMO FUNCIONA -->
+  <section class="slide process" id="s5">
+    <div class="num">05 · COMO FUNCIONA</div>
+    <div class="content">
+      <div class="kicker">Como funciona</div>
+      <h2>Três sessões, <em>um plano executável</em>.</h2>
+      <div class="timeline">
+        <div class="step"><h4>1 · Diagnóstico</h4><p>20 a 30 minutos. Analisamos os seus exemplos, identificamos o problema prioritário e damos as primeiras recomendações. No fim, decide se continua.</p></div>
+        <div class="step"><h4>2 · Desenvolvimento</h4><p>60 a 90 minutos. Formato, estrutura de roteiro, cenário, luz, som e calendário de publicação. Recebe os primeiros materiais para começar a trabalhar.</p></div>
+        <div class="step"><h4>3 · Fecho e roadmap</h4><p>60 a 90 minutos. Afinamos o plano ao que realmente quer e entregamos os materiais finais, com critérios de sucesso.</p></div>
+      </div>
+      <span class="badge">Ciclo de 2 a 3 semanas<small>sessões online por defeito</small></span>
+      <p class="body" style="margin-top:2rem">As sessões são espaçadas para poder testar entre elas o que vai aprendendo. São <strong>online por defeito</strong>, o que reduz o custo; presencial é possível, com a deslocação a acrescer. Depois do ciclo, se quiser continuar, há sessões extra avulsas. E quando o diagnóstico mostra que o projeto pede mesmo produção profissional, a AfteREC pode fazê-la: é o mesmo padrão que aplicamos no cinema, nos videoclipes e nos conteúdos para empresas.</p>
+    </div>
+  </section>
+
+  <!-- 06 · O QUE RECEBE -->
+  <section class="slide split" id="s6">
+    <div class="num">06 · O QUE RECEBE</div>
+    <div class="text">
+      <div class="kicker">O que recebe</div>
+      <h2>Documentos simples, <em>feitos para seguir</em>.</h2>
+      <p class="body">No fim do ciclo fica com materiais feitos para usar, não para arquivar: o <strong>diagnóstico escrito</strong> numa página; o <strong>roadmap executável</strong> com formato, roteiro-base, setup técnico, calendário e prioridades; a <strong>lista de equipamento e funções com preços de referência</strong>, para saber exatamente quanto custa produzir cada tipo de projeto; e o <strong>mapa de cenários</strong>, quando se aplica, com o setup de captação recomendado.<br><br>Tudo em documentos simples, com as instruções clarificadas: o que precisa de fazer, o que quer fazer e como fazer. É um plano que qualquer equipa de produção consegue agarrar, a começar pela sua.</p>
+    </div>
+    <div class="media">
+      <div class="bgimg" style="background-image:url('img/06-materiais.jpg')"></div>
+      <div class="grad"></div>
+    </div>
+  </section>
+
+  <!-- 07 · VALORES -->
+  <section class="slide pacotes" id="s7">
+    <div class="num">07 · VALORES</div>
+    <div class="content">
+      <div class="kicker">Valores</div>
+      <h2>Comece pequeno, <em>decida depois</em>.</h2>
+      <div class="pk-grid">
+        <div class="pk">
+          <h4>Sessão 1 · Diagnóstico</h4>
+          <div class="preco">€35</div>
+          <ul>
+            <li><strong>20 a 30 minutos</strong> de sessão online</li>
+            <li><strong>Análise dos seus exemplos</strong> e do seu ponto de partida</li>
+            <li><strong>Problema prioritário identificado</strong> e primeiras recomendações</li>
+            <li>Sem compromisso de continuar</li>
+          </ul>
+          <div class="quem">Para experimentar e decidir com base na sessão</div>
+        </div>
+        <div class="pk destaque">
+          <span class="tag">Recomendado</span>
+          <h4>Ciclo completo</h4>
+          <div class="preco">€235</div>
+          <ul>
+            <li><strong>3 sessões</strong>: diagnóstico, desenvolvimento, fecho e roadmap</li>
+            <li><strong>Diagnóstico escrito</strong> + <strong>roadmap executável</strong></li>
+            <li><strong>Lista de equipamento e funções</strong> com preços de referência</li>
+            <li><strong>Mapa de cenários</strong>, quando aplicável</li>
+          </ul>
+          <div class="quem">O plano completo, pronto a executar</div>
+        </div>
+        <div class="pk">
+          <h4>Extras</h4>
+          <div class="preco">sob consulta</div>
+          <ul>
+            <li><strong>Materiais extra</strong> (briefing detalhado, guião-base): desde €100</li>
+            <li><strong>Apoio no local e montagem de cenário</strong>: desde €150</li>
+            <li><strong>Sessões de acompanhamento</strong>: €100 por sessão</li>
+          </ul>
+          <div class="quem">Para ir mais longe depois do ciclo</div>
+        </div>
+      </div>
+      <p class="pk-note">Valores sem IVA, da fase de introdução do serviço. Pode pagar só a Sessão 1 e decidir depois; se quiser o ciclo completo, o pagamento faz-se antes das restantes sessões. Reuniões presenciais têm a deslocação a acrescer (cerca de €50 em Lisboa). <a href="https://cal.com/afterec/discoverycall" target="_blank" rel="noopener">Marcar Sessão 1 →</a></p>
+    </div>
+  </section>
+
+  <!-- 08 · CTA -->
+  <section class="slide statement cta" id="s8">
+    <div class="content">
+      <h2>A sua próxima produção <em>começa numa conversa</em>.</h2>
+      <p class="body" style="margin:0 auto">Conte-nos o que produz, ou o que quer começar a produzir. Avaliamos o que precisa, dizemos com franqueza se podemos ajudar, e sugerimos um dia para a primeira sessão.</p>
+      <a class="btn" href="https://cal.com/afterec/discoverycall" target="_blank" rel="noopener">Marcar Sessão 1</a>
+      <div class="contacts">
+        <a href="mailto:before@afterec.com">before@afterec.com</a><br>
+        +351 939 842 928
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<nav class="dots" id="dots"></nav>
+
+<a class="downarrow" id="downarrow" href="#s2" title="Continuar">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</a>
+
+<script>
+  const slides=[...document.querySelectorAll('section.slide')];
+  const dots=document.getElementById('dots');
+  slides.forEach((s,i)=>{
+    const a=document.createElement('a');
+    a.href='#'+s.id;a.title='Slide '+(i+1);
+    dots.appendChild(a);
+  });
+  const links=[...dots.children];
+  const arrow=document.getElementById('downarrow');
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        const i=slides.indexOf(e.target);
+        links.forEach(l=>l.classList.remove('active'));
+        links[i].classList.add('active');
+        if(i>=slides.length-1){arrow.classList.add('hidden')}
+        else{arrow.classList.remove('hidden');arrow.href='#'+slides[i+1].id}
+      }
+    });
+  },{threshold:.55});
+  slides.forEach(s=>obs.observe(s));
+  // navegação por teclado
+  document.addEventListener('keydown',e=>{
+    const cur=slides.findIndex(s=>{const r=s.getBoundingClientRect();return r.top>=-10&&r.top<10});
+    if(e.key==='ArrowDown'||e.key==='PageDown'||e.key===' '){e.preventDefault();slides[Math.min(cur+1,slides.length-1)]?.scrollIntoView()}
+    if(e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();slides[Math.max(cur-1,0)]?.scrollIntoView()}
+  });
+  /* Sistema multilingue: entra depois do OK do Founder à versão PT (replicar do template da Apresentação Corporate). */
+</script>
+</body>
+</html>
