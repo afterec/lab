@@ -121,6 +121,10 @@
   .statement{background:var(--bg)}
   .statement .content{max-width:1040px;padding:0 2rem;text-align:center}
   .statement p.body{margin:0 auto}
+  .side-deco{position:absolute;top:50%;transform:translateY(-50%);width:min(16vw,280px);height:auto;opacity:.4;pointer-events:none;z-index:1}
+  .side-deco.l{left:2.2vw}
+  .side-deco.r{right:2.2vw}
+  @media(max-width:860px){.side-deco{display:none}}
   /* ---------- process ---------- */
   .process .content{max-width:1080px;width:100%;padding:0 6vw}
   .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:3rem 0 2.4rem;position:relative}
@@ -378,6 +382,8 @@
 
   <!-- 08 · CTA -->
   <section class="slide statement cta" id="s8">
+    <img class="side-deco l" src="img/deco-perche.png" alt="">
+    <img class="side-deco r" src="img/deco-claquete.png" alt="">
     <div class="content">
       <h2>A sua próxima produção <em>começa numa conversa</em>.</h2>
       <p class="body" style="margin:0 auto">Conte-nos o que produz, ou o que quer começar a produzir. Avaliamos o que precisa, dizemos com franqueza se podemos ajudar, e sugerimos um dia para a primeira sessão.</p>
