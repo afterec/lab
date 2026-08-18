@@ -9,6 +9,12 @@
 <link rel="alternate" hreflang="pt-PT" href="https://afterec.com/lab/">
 <link rel="alternate" hreflang="en" href="https://afterec.com/en/lab/">
 <link rel="alternate" hreflang="es" href="https://afterec.com/es/lab/">
+<link rel="alternate" hreflang="it" href="https://afterec.com/it/lab/">
+<link rel="alternate" hreflang="de" href="https://afterec.com/de/lab/">
+<link rel="alternate" hreflang="da" href="https://afterec.com/da/lab/">
+<link rel="alternate" hreflang="ja" href="https://afterec.com/ja/lab/">
+<link rel="alternate" hreflang="zh" href="https://afterec.com/zh/lab/">
+<link rel="alternate" hreflang="ar" href="https://afterec.com/ar/lab/">
 <link rel="alternate" hreflang="x-default" href="https://afterec.com/lab/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AfteREC">
@@ -347,6 +353,12 @@
     <button data-l="pt">Português</button>
     <button data-l="en" class="on">English</button>
     <button data-l="es">Español</button>
+    <button data-l="it">Italiano</button>
+    <button data-l="de">Deutsch</button>
+    <button data-l="da">Dansk</button>
+    <button data-l="ja">日本語</button>
+    <button data-l="zh">中文</button>
+    <button data-l="ar">العربية</button>
   </div>
 </div>
 </div>
@@ -619,7 +631,7 @@
     var btn = sw.querySelector('.langbtn');
     btn.addEventListener('click', function(e){ e.stopPropagation(); sw.classList.toggle('open'); });
     document.addEventListener('click', function(){ sw.classList.remove('open'); });
-    var LANG_URLS = {pt:'/lab/', en:'/en/lab/', es:'/es/lab/'};
+    var LANG_URLS = {pt:'/lab/', en:'/en/lab/', es:'/es/lab/', it:'/it/lab/', de:'/de/lab/', da:'/da/lab/', ja:'/ja/lab/', zh:'/zh/lab/', ar:'/ar/lab/'};
     sw.querySelectorAll('.langmenu button').forEach(function(b){
       b.addEventListener('click', function(){
         var l = b.dataset.l;

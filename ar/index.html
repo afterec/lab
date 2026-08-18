@@ -1,29 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
-<script>
-/* deteção de idioma: 1.ª visita sem preferência → redireciona para en/es; escolha manual ganha sempre */
-(function(){
-  try{
-    if(/bot|crawl|spider|slurp|preview|lighthouse/i.test(navigator.userAgent)) return;
-    var PAGE='/lab/';
-    var stored=null; try{stored=localStorage.getItem('afterec_lang')}catch(e){}
-    var t=null;
-    if(stored){ if(['en','es','it','de','da','ja','zh','ar'].indexOf(stored)>=0) t=stored; }
-    else{
-      var l=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();
-      var LNGS=['en','es','it','de','da','ja','zh','ar'];for(var i=0;i<LNGS.length;i++){if(l.indexOf(LNGS[i])===0){t=LNGS[i];break}}
-      try{localStorage.setItem('afterec_lang', t||'pt')}catch(e){}
-    }
-    if(t) location.replace('/'+t+PAGE);
-  }catch(e){}
-})();
-</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AfteREC Lab — Apresentação do Serviço</title>
-<meta name="description" content="Consultoria criativa e estratégia de conteúdo para marcas e projetos.">
-<link rel="canonical" href="https://afterec.com/lab/">
+<title>AfteREC Lab — عرض الخدمة</title>
+<meta name="description" content="استشارات إبداعية واستراتيجية محتوى للعلامات والمشاريع.">
+<link rel="canonical" href="https://afterec.com/ar/lab/">
 <link rel="alternate" hreflang="pt-PT" href="https://afterec.com/lab/">
 <link rel="alternate" hreflang="en" href="https://afterec.com/en/lab/">
 <link rel="alternate" hreflang="es" href="https://afterec.com/es/lab/">
@@ -36,18 +18,18 @@
 <link rel="alternate" hreflang="x-default" href="https://afterec.com/lab/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AfteREC">
-<meta property="og:url" content="https://afterec.com/lab/">
+<meta property="og:url" content="https://afterec.com/ar/lab/">
 <meta property="og:title" content="AfteREC Lab">
-<meta property="og:description" content="Consultoria criativa e estratégia de conteúdo para marcas e projetos.">
-<meta property="og:locale" content="pt_PT">
+<meta property="og:description" content="استشارات إبداعية واستراتيجية محتوى للعلامات والمشاريع.">
+<meta property="og:locale" content="ar_AR">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-{"@type":"ListItem","position":1,"name":"Início","item":"https://afterec.com/"},
-{"@type":"ListItem","position":2,"name":"Lab","item":"https://afterec.com/lab/"}]}
+{"@type":"ListItem","position":1,"name":"الرئيسية","item":"https://afterec.com/ar/"},
+{"@type":"ListItem","position":2,"name":"Lab","item":"https://afterec.com/ar/lab/"}]}
 </script>
-<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
-<link rel="icon" type="image/png" sizes="64x64" href="img/favicon.png">
-<link rel="apple-touch-icon" href="img/favicon.png">
+<link rel="icon" type="image/svg+xml" href="/lab/img/favicon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="/lab/img/favicon.png">
+<link rel="apple-touch-icon" href="/lab/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -343,32 +325,37 @@
   .topctl .langsw{position:static}
   .topctl .langmenu{left:0;right:auto}
   @media(max-width:860px){.topctl{top:1.1rem;left:1.1rem}}
+  /* ---------- ajustes árabe (layout LTR, texto RTL): sem letter-spacing + bullets RTL ---------- */
+  html[lang="ar"] .kicker,html[lang="ar"] .num,html[lang="ar"] .badge,html[lang="ar"] .btn,html[lang="ar"] .pk .tag,html[lang="ar"] a.homeback,html[lang="ar"] .langbtn,html[lang="ar"] .svcnav{letter-spacing:0}
+  html[lang="ar"] .pk li{padding-left:0;padding-right:1rem}
+  html[lang="ar"] .ring li{padding-left:0;padding-right:.9rem}
+  html[lang="ar"] .pk li:before,html[lang="ar"] .ring li:before{left:auto;right:0}
 </style>
 </head>
 <body>
 <div id="pageveil" aria-hidden="true">
   <div class="pl">
-    <img src="img/00-logo-branco.png" alt="">
+    <img src="/lab/img/00-logo-branco.png" alt="">
     <div class="plbar"><i></i></div>
   </div>
 </div>
 <div class="topctl">
-<nav class="crumbs" aria-label="Percurso">
+<nav class="crumbs" aria-label="Breadcrumb">
   <ol>
-    <li><a class="homeback" href="https://afterec.com/" aria-label="Voltar ao início">
+    <li><a class="homeback" href="https://afterec.com/ar/" aria-label="العودة إلى الرئيسية">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-      <span>Início</span>
+      <span dir="rtl">الرئيسية</span>
     </a></li>
     <li aria-current="page"><span class="vh">Lab</span></li>
   </ol>
 </nav>
 <div class="langsw" id="langsw">
-  <button class="langbtn" aria-haspopup="true" aria-expanded="false" aria-label="Escolher idioma">
+  <button class="langbtn" aria-haspopup="true" aria-expanded="false" aria-label="اختيار اللغة">
     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>
-    <span class="langcur">PT</span>
+    <span class="langcur">AR</span>
   </button>
   <div class="langmenu" role="menu">
-    <button data-l="pt" class="on">Português</button>
+    <button data-l="pt">Português</button>
     <button data-l="en">English</button>
     <button data-l="es">Español</button>
     <button data-l="it">Italiano</button>
@@ -376,7 +363,7 @@
     <button data-l="da">Dansk</button>
     <button data-l="ja">日本語</button>
     <button data-l="zh">中文</button>
-    <button data-l="ar">العربية</button>
+    <button data-l="ar" class="on">العربية</button>
   </div>
 </div>
 </div>
@@ -384,173 +371,173 @@
 
   <!-- 01 · CAPA -->
   <section class="slide hero capa" id="s1">
-    <div class="bgimg" style="background-image:url('img/01-capa.jpg')"></div>
+    <div class="bgimg" style="background-image:url('/lab/img/01-capa.jpg')"></div>
     <div class="veil"></div>
     <div class="content">
-      <img class="logo" src="img/00-logo-branco.png" alt="AfteREC">
+      <img class="logo" src="/lab/img/00-logo-branco.png" alt="AfteREC">
       <h1>Lab</h1>
       <div class="rule"></div>
-      <p class="sub">Um serviço para ajudar quem quer produzir os seus próprios conteúdos, <span class="subq">com qualidade de cinema.</span></p>
+      <p class="sub" dir="rtl">خدمة لمن يريد إنتاج محتواه بنفسه، <span class="subq">بجودة سينمائية.</span></p>
     </div>
   </section>
 
   <!-- 02 · O QUE É O LAB -->
   <section class="slide statement" id="s2">
-    <div class="num">02 · O LAB</div>
+    <div class="num">02 · LAB</div>
     <div class="content">
-      <div class="kicker">O que é o Lab</div>
-      <h2>Aprender com <em>profissionais da área</em>.</h2>
-      <p class="body">O AfteREC Lab é um serviço que <strong>ensina como produzir conteúdos com qualidade de cinema</strong>: bons enquadramentos, boa iluminação, bons cenários, boa preparação e o equipamento certo para cada projeto. A AfteREC não grava nem entrega vídeo: dá a direção, e quem aprende executa. O formato é uma <strong>aula conversada</strong>, e quem ensina são profissionais a trabalhar em cinema: a AfteREC tem uma rede de especialistas em cada área e, para cada necessidade, <strong>encontra o melhor professor</strong>. Montar e decorar um cenário? Entra o diretor de arte certo, numa mini aula que parte do que o aluno necessita e o ajuda a construir.<br><br>E o melhor professor nem sempre é o do portfólio mais premiado: é <strong>quem melhor comunica e melhor explica</strong>, porque é isso que garante que o aluno sai a saber fazer. A AfteREC procura sempre as duas coisas: o melhor trabalho e a melhor forma de o ensinar. O Lab serve <strong>criadores de conteúdo, equipas internas de marketing, empresas e fundadores</strong>: quem já produz e quer subir a qualidade, e quem está a começar, sem gastar recursos onde não é preciso.</p>
+      <div class="kicker" dir="rtl">ما هو AfteREC Lab</div>
+      <h2 dir="rtl">تعلّموا من <em>محترفي الصناعة</em>.</h2>
+      <p class="body" dir="rtl">AfteREC Lab خدمة <strong>تعلّمكم إنتاج محتوى بجودة سينمائية</strong>: تأطير جيد، وإضاءة جيدة، ومشاهد جيدة، وتحضير جيد، والمعدات المناسبة لكل مشروع. AfteREC لا تصوّر ولا تسلّم فيديو: بل تعطي التوجيه، والمتعلّم ينفّذ. الصيغة <strong>درس حواري</strong>، يقدّمه محترفون يعملون في السينما: لدى AfteREC شبكة متخصصين في كل مجال، ولكل حاجة، <strong>تجد المعلّم الأفضل</strong>. بناء مشهد وتجهيزه؟ يتدخل المدير الفني المناسب، في درس مصغّر ينطلق مما يحتاجه المتعلّم ويساعده على بنائه.<br><br>والمعلّم الأفضل ليس دائمًا صاحب أكثر الأعمال تتويجًا: بل <strong>من يتواصل ويشرح أفضل</strong>، لأن هذا ما يضمن أن يخرج المتعلّم عارفًا كيف يفعل. تبحث AfteREC دائمًا عن الاثنين: أفضل عمل وأفضل طريقة لتعليمه. يخدم Lab <strong>صنّاع المحتوى، وفرق التسويق الداخلية، والشركات والمؤسسين</strong>: من ينتج بالفعل ويريد رفع الجودة، ومن يبدأ الآن، دون إنفاق موارد حيث لا يلزم.</p>
     </div>
   </section>
 
   <!-- 03 · O MERCADO -->
   <section class="slide split rev" id="s3">
-    <div class="num">03 · O MERCADO</div>
+    <div class="num" dir="rtl">03 · السوق</div>
     <div class="media">
       <div class="compare">
         <div class="rings">
           <div class="ring a">
             <div class="rwrap">
-              <svg viewBox="0 0 120 120" role="img" aria-label="91% das empresas usam vídeo como ferramenta de marketing">
+              <svg viewBox="0 0 120 120" role="img" aria-label="91% من الشركات تستخدم الفيديو كأداة تسويق">
                 <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(244,242,238,.08)" stroke-width="9"/>
                 <circle cx="60" cy="60" r="52" fill="none" stroke="#ff7a45" stroke-width="9" stroke-linecap="round" stroke-dasharray="297.3 326.7" transform="rotate(-90 60 60)"/>
                 <text class="rnum" x="60" y="70" text-anchor="middle" font-family="Inter,Arial,sans-serif">91%</text>
               </svg>
             </div>
-            <span class="rsub">das empresas já usam vídeo como ferramenta de marketing <em>(Wyzowl)</em></span>
+            <span class="rsub" dir="rtl">من الشركات تستخدم الفيديو بالفعل كأداة تسويق <em>(Wyzowl)</em></span>
             <ul>
-              <li>Toda a gente publica</li>
-              <li>A maioria produz internamente, sem direção</li>
+              <li dir="rtl">الجميع ينشر</li>
+              <li dir="rtl">الأغلبية تنتج داخليًا، دون توجيه</li>
             </ul>
           </div>
           <div class="ring b">
             <div class="rwrap">
-              <svg viewBox="0 0 120 120" role="img" aria-label="62% dos consumidores ficam com perceção negativa da marca ao ver um vídeo de má qualidade">
+              <svg viewBox="0 0 120 120" role="img" aria-label="62% من المستهلكين تتكوّن لديهم نظرة سلبية عن العلامة بعد مشاهدة فيديو منخفض الجودة">
                 <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(244,242,238,.08)" stroke-width="9"/>
                 <circle cx="60" cy="60" r="52" fill="none" stroke="#f90000" stroke-width="9" stroke-linecap="round" stroke-dasharray="202.6 326.7" transform="rotate(-90 60 60)"/>
                 <text class="rnum" x="60" y="70" text-anchor="middle" font-family="Inter,Arial,sans-serif">62%</text>
               </svg>
             </div>
-            <span class="rsub">dos consumidores ficam com uma perceção negativa da marca ao ver um vídeo de má qualidade <em>(Brightcove)</em></span>
+            <span class="rsub" dir="rtl">من المستهلكين تتكوّن لديهم نظرة سلبية عن العلامة بعد مشاهدة فيديو منخفض الجودة <em>(Brightcove)</em></span>
             <ul>
-              <li>60% deixam de interagir com a marca</li>
-              <li>23% hesitam em comprar</li>
+              <li dir="rtl">60% يتوقفون عن التفاعل مع العلامة</li>
+              <li dir="rtl">23% يترددون في الشراء</li>
             </ul>
           </div>
         </div>
-        <p class="fonte">Fontes: Wyzowl, State of Video Marketing. Brightcove, estudo de perceção de qualidade de vídeo.</p>
+        <p class="fonte" dir="rtl">المصادر: Wyzowl, State of Video Marketing. Brightcove، دراسة إدراك جودة الفيديو.</p>
       </div>
     </div>
     <div class="text">
-      <div class="kicker">Porque é que isto importa</div>
-      <h2>Produzir já não é opcional. <em>Produzir mal sai caro</em>.</h2>
-      <p class="body">O vídeo passou a ser o formato por defeito da comunicação: <strong>91% das empresas usam vídeo como ferramenta de marketing</strong> (Wyzowl), e os criadores nunca publicaram tanto. Mas a corrida ao volume tem um custo escondido: <strong>62% dos consumidores ficam com uma perceção negativa da marca quando veem um vídeo de má qualidade</strong> (Brightcove), e a maioria deixa de interagir a seguir.<br><br>O problema raramente é o equipamento: é a falta de direção. Luz mal posta, som com eco, formato errado para o canal, guiões que não seguram ninguém. Cada conteúdo publicado está a construir ou a desgastar a imagem de quem o publica, e a diferença entre uma coisa e a outra é saber o que se está a fazer.</p>
+      <div class="kicker" dir="rtl">لماذا هذا مهم</div>
+      <h2 dir="rtl">الإنتاج لم يعد خيارًا. <em>الإنتاج السيئ مكلف</em>.</h2>
+      <p class="body" dir="rtl">أصبح الفيديو الصيغة الافتراضية للتواصل: <strong>91% من الشركات تستخدم الفيديو كأداة تسويق</strong> (Wyzowl)، ولم يسبق لصنّاع المحتوى أن نشروا بهذا القدر. لكن لسباق الحجم كلفة خفية: <strong>62% من المستهلكين تتكوّن لديهم نظرة سلبية عن العلامة حين يرون فيديو منخفض الجودة</strong> (Brightcove)، ومعظمهم يتوقف عن التفاعل بعد ذلك.<br><br>نادرًا ما تكون المشكلة في المعدات: بل في غياب التوجيه. إضاءة موضوعة بشكل سيئ، وصوت بصدى، وصيغة خاطئة للقناة، وسيناريوهات لا تمسك بأحد. كل محتوى يُنشر إما يبني صورة ناشره أو يستهلكها، والفرق بين الاثنين هو أن تعرف ما تفعله.</p>
     </div>
   </section>
 
   <!-- 04 · PORQUÊ A AFTEREC -->
   <section class="slide statement" id="s4">
-    <div class="num">04 · PORQUÊ A AFTEREC</div>
+    <div class="num" dir="rtl">04 · لماذا AFTEREC</div>
     <div class="content">
-      <div class="kicker">Porquê trabalhar connosco</div>
-      <h2>Quem ensina é <em>quem produz</em>.</h2>
-      <p class="body">A direção que o aluno recebe no Lab vem de quem passa o resto da semana em rodagem: a AfteREC produz cinema, videoclipes e conteúdos para empresas, e é essa experiência real que entra em cada sessão, não teoria tirada de um curso. Os professores veem os exemplos do aluno, percebem o que está a travar a qualidade e dizem exatamente o que mudar.<br><br>A filosofia do Lab é ensinar a <strong>não gastar de mais</strong>. Um projeto não precisa de ser elaborado nem cheio de ideias complexas para ter impacto: muitas vezes um projeto simples tem exatamente o efeito pretendido. O serviço ajuda o aluno a articular a ideia, a perceber o que encarece e o que baratece um trabalho, e a decidir o que vale a pena pedir a uma produtora, e o que consegue fazer sozinho.</p>
+      <div class="kicker" dir="rtl">لماذا العمل معنا</div>
+      <h2 dir="rtl">من يعلّمون هم <em>من ينتجون</em>.</h2>
+      <p class="body" dir="rtl">التوجيه الذي يتلقاه المتعلّم في Lab يأتي من أشخاص يقضون بقية الأسبوع في مواقع التصوير: تنتج AfteREC أفلامًا وفيديو كليبات ومحتوى للشركات، وتلك الخبرة الحقيقية هي ما يدخل في كل جلسة، لا نظرية منقولة من دورة. ينظر المعلّمون إلى أمثلة المتعلّم، ويرون ما يعيق الجودة ويقولون بالضبط ما يجب تغييره.<br><br>فلسفة Lab هي تعليمكم <strong>ألا تنفقوا أكثر من اللازم</strong>. لا يحتاج المشروع إلى أن يكون معقدًا أو مليئًا بالأفكار المركّبة ليكون له أثر: كثيرًا ما يحقق المشروع البسيط الأثر المقصود تمامًا. تساعد الخدمة المتعلّم على صياغة الفكرة، وفهم ما يجعل العمل أغلى أو أرخص، وتقرير ما يستحق أن يُطلب من شركة إنتاج، وما يمكنه فعله بنفسه.</p>
     </div>
   </section>
 
   <!-- 05 · COMO FUNCIONA -->
   <section class="slide process" id="s5">
-    <div class="num">05 · COMO FUNCIONA</div>
+    <div class="num" dir="rtl">05 · كيف تعمل</div>
     <div class="content">
-      <div class="kicker">Como funciona</div>
-      <h2>Três sessões, <em>um plano executável</em>.</h2>
+      <div class="kicker" dir="rtl">كيف تعمل</div>
+      <h2 dir="rtl">ثلاث جلسات، <em>خطة قابلة للتنفيذ</em>.</h2>
       <div class="timeline">
-        <div class="step"><h4>1 · Diagnóstico</h4><p>20 a 30 minutos. Análise dos exemplos do aluno, identificação do problema prioritário e primeiras recomendações. No fim, o aluno decide se continua.</p></div>
-        <div class="step"><h4>2 · Desenvolvimento</h4><p>60 a 90 minutos. Formato, estrutura de roteiro, cenário, luz, som e calendário de publicação. O aluno recebe os primeiros materiais para começar a trabalhar.</p></div>
-        <div class="step"><h4>3 · Fecho e roadmap</h4><p>60 a 90 minutos. O plano afina-se ao que o aluno realmente quer, com os materiais finais e critérios de sucesso.</p></div>
+        <div class="step" dir="rtl"><h4>1 · التشخيص</h4><p>من 20 إلى 30 دقيقة. تحليل أمثلة المتعلّم، وتحديد المشكلة ذات الأولوية، وأولى التوصيات. في النهاية، يقرّر المتعلّم إن كان سيواصل.</p></div>
+        <div class="step" dir="rtl"><h4>2 · التطوير</h4><p>من 60 إلى 90 دقيقة. الصيغة، وهيكل السيناريو، والمشهد، والإضاءة، والصوت، وتقويم النشر. يتسلم المتعلّم المواد الأولى ليبدأ العمل بها.</p></div>
+        <div class="step" dir="rtl"><h4>3 · الختام وخارطة الطريق</h4><p>من 60 إلى 90 دقيقة. تُضبط الخطة على ما يريده المتعلّم فعلًا، مع المواد النهائية ومعايير النجاح.</p></div>
       </div>
-      <span class="badge">Ciclo de 2 a 3 semanas<small>sessões online por defeito</small></span>
-      <p class="body" style="margin-top:2rem">As sessões são espaçadas para o aluno poder testar entre elas o que vai aprendendo. São <strong>online por defeito</strong>, o que reduz o custo; presencial é possível, com a deslocação a acrescer. Depois do ciclo há sessões extra avulsas, para quem quiser continuar. E quando o diagnóstico mostra que o projeto pede mesmo produção profissional, a AfteREC pode fazê-la: é o mesmo padrão que aplica no cinema, nos videoclipes e nos conteúdos para empresas.</p>
+      <span class="badge" dir="rtl">دورة من أسبوعين إلى ثلاثة<small>جلسات عبر الإنترنت افتراضيًا</small></span>
+      <p class="body" style="margin-top:2rem" dir="rtl">الجلسات متباعدة ليتمكن المتعلّم من اختبار ما يتعلمه بينها. وهي <strong>عبر الإنترنت افتراضيًا</strong>، ما يخفض الكلفة؛ والحضور الشخصي ممكن، مع إضافة التنقل. بعد الدورة توجد جلسات إضافية منفردة، لمن يريد المواصلة. وحين يُظهر التشخيص أن المشروع يستدعي فعلًا إنتاجًا احترافيًا، يمكن لـAfteREC القيام به: إنه المعيار نفسه الذي تطبّقه في السينما والفيديو كليبات ومحتوى الشركات.</p>
     </div>
   </section>
 
   <!-- 06 · O QUE RECEBE -->
   <section class="slide split" id="s6">
-    <div class="num">06 · O QUE RECEBE</div>
+    <div class="num" dir="rtl">06 · ما تحصلون عليه</div>
     <div class="text">
-      <div class="kicker">O que recebe</div>
-      <h2>Documentos simples, <em>feitos para seguir</em>.</h2>
-      <p class="body">No fim do ciclo, o aluno fica com materiais feitos para usar, não para arquivar: o <strong>diagnóstico escrito</strong> numa página; o <strong>roadmap executável</strong> com formato, roteiro-base, setup técnico, calendário e prioridades; a <strong>lista de equipamento e funções com preços de referência</strong>, para saber exatamente quanto custa produzir cada tipo de projeto; e o <strong>mapa de cenários</strong>, quando se aplica, com o setup de captação recomendado.<br><br>Tudo em documentos simples, com as instruções clarificadas: o que é preciso fazer, o que se quer fazer e como fazer. É um plano que qualquer equipa de produção consegue agarrar, a começar pela do próprio aluno.</p>
+      <div class="kicker" dir="rtl">ما تحصلون عليه</div>
+      <h2 dir="rtl">مستندات بسيطة، <em>مصنوعة لتُتَّبع</em>.</h2>
+      <p class="body" dir="rtl">في نهاية الدورة، يحتفظ المتعلّم بمواد مصنوعة لتُستخدم، لا لتُؤرشف: <strong>التشخيص المكتوب</strong> في صفحة واحدة؛ و<strong>خارطة الطريق القابلة للتنفيذ</strong> مع الصيغة والسيناريو الأساسي والتجهيز التقني والتقويم والأولويات؛ و<strong>قائمة المعدات والفريق بأسعار مرجعية</strong>، لمعرفة كلفة إنتاج كل نوع من المشاريع بالضبط؛ و<strong>خريطة المشهد</strong>، حين ينطبق ذلك، مع تجهيز التصوير الموصى به.<br><br>كل شيء في مستندات بسيطة، بتعليمات واضحة: ما يجب فعله، وما تريدون فعله، وكيف تفعلونه. إنها خطة يمكن لأي فريق إنتاج تبنّيها، بدءًا بفريق المتعلّم نفسه.</p>
     </div>
     <div class="media">
-      <div class="bgimg" style="background-image:url('img/06-materiais.jpg')"></div>
+      <div class="bgimg" style="background-image:url('/lab/img/06-materiais.jpg')"></div>
       <div class="grad"></div>
     </div>
   </section>
 
   <!-- 07 · VALORES -->
   <section class="slide pacotes" id="s7">
-    <div class="num">07 · VALORES</div>
+    <div class="num" dir="rtl">07 · الأسعار</div>
     <div class="content">
-      <div class="kicker">Valores</div>
-      <h2>Comece pequeno, <em>decida depois</em>.</h2>
+      <div class="kicker" dir="rtl">الأسعار</div>
+      <h2 dir="rtl">ابدأوا صغيرًا، <em>وقرّروا لاحقًا</em>.</h2>
       <div class="pk-grid">
         <div class="pk">
-          <h4>Sessão 1 · Diagnóstico</h4>
+          <h4 dir="rtl">الجلسة 1 · التشخيص</h4>
           <div class="preco">€35</div>
           <ul>
-            <li><strong>20 a 30 minutos</strong> de sessão online</li>
-            <li><strong>Análise dos exemplos</strong> e do ponto de partida do aluno</li>
-            <li><strong>Problema prioritário identificado</strong> e primeiras recomendações</li>
-            <li>Sem compromisso de continuar</li>
+            <li dir="rtl"><strong>من 20 إلى 30 دقيقة</strong> من الجلسة عبر الإنترنت</li>
+            <li dir="rtl"><strong>تحليل الأمثلة</strong> ونقطة انطلاق المتعلّم</li>
+            <li dir="rtl"><strong>تحديد المشكلة ذات الأولوية</strong> وأولى التوصيات</li>
+            <li dir="rtl">دون التزام بالمواصلة</li>
           </ul>
-          <div class="quem">Para experimentar e decidir com base na sessão</div>
+          <div class="quem" dir="rtl">للتجربة والقرار بناءً على الجلسة</div>
         </div>
         <div class="pk destaque">
-          <span class="tag">Recomendado</span>
-          <h4>Ciclo completo</h4>
+          <span class="tag" dir="rtl">موصى بها</span>
+          <h4 dir="rtl">الدورة الكاملة</h4>
           <div class="preco">€235</div>
           <ul>
-            <li><strong>3 sessões</strong>: diagnóstico, desenvolvimento, fecho e roadmap</li>
-            <li><strong>Diagnóstico escrito</strong> + <strong>roadmap executável</strong></li>
-            <li><strong>Lista de equipamento e funções</strong> com preços de referência</li>
-            <li><strong>Mapa de cenários</strong>, quando aplicável</li>
+            <li dir="rtl"><strong>3 جلسات</strong>: التشخيص، والتطوير، والختام وخارطة الطريق</li>
+            <li dir="rtl"><strong>تشخيص مكتوب</strong> + <strong>خارطة طريق قابلة للتنفيذ</strong></li>
+            <li dir="rtl"><strong>قائمة المعدات والفريق</strong> بأسعار مرجعية</li>
+            <li dir="rtl"><strong>خريطة المشهد</strong>، حين ينطبق</li>
           </ul>
-          <div class="quem">O plano completo, pronto a executar</div>
+          <div class="quem" dir="rtl">الخطة الكاملة، جاهزة للتنفيذ</div>
         </div>
         <div class="pk">
-          <h4>Extras</h4>
-          <div class="preco">sob consulta</div>
+          <h4 dir="rtl">إضافات</h4>
+          <div class="preco" dir="rtl">عند الطلب</div>
           <ul>
-            <li><strong>Materiais extra</strong> (briefing detalhado, guião-base): desde €100</li>
-            <li><strong>Apoio no local e montagem de cenário</strong>: desde €150</li>
-            <li><strong>Sessões de acompanhamento</strong>: €100 por sessão</li>
+            <li dir="rtl"><strong>مواد إضافية</strong> (استبيان تعريفي مفصّل، سيناريو أساسي): من €100</li>
+            <li dir="rtl"><strong>مواكبة في الموقع وبناء المشهد</strong>: من €150</li>
+            <li dir="rtl"><strong>جلسات متابعة</strong>: €100 لكل جلسة</li>
           </ul>
-          <div class="quem">Para ir mais longe depois do ciclo</div>
+          <div class="quem" dir="rtl">للذهاب أبعد بعد الدورة</div>
         </div>
       </div>
-      <p class="pk-note">Valores sem IVA, da fase de introdução do serviço. O aluno pode pagar só a Sessão 1 e decidir depois; para o ciclo completo, o pagamento faz-se antes das restantes sessões. Reuniões presenciais têm a deslocação a acrescer (cerca de €50 em Lisboa). <a href="https://cal.com/afterec/discoverycall" target="_blank" rel="noopener">Marcar Sessão 1 →</a></p>
+      <p class="pk-note" dir="rtl">الأسعار لا تشمل ضريبة القيمة المضافة، وهي من المرحلة التمهيدية للخدمة. يمكن للمتعلّم دفع الجلسة 1 فقط والقرار لاحقًا؛ وللدورة الكاملة، يُدفع قبل الجلسات المتبقية. الاجتماعات الحضورية تُضاف إليها التنقلات (نحو €50 في لشبونة). <a href="https://cal.com/afterec/discoverycall" target="_blank" rel="noopener">حجز الجلسة 1 ←</a></p>
     </div>
   </section>
 
   <!-- 08 · CTA -->
   <section class="slide statement cta" id="s8">
-    <img class="side-deco l" src="img/deco-perche.png" alt="">
-    <img class="side-deco r" src="img/deco-claquete.png" alt="">
+    <img class="side-deco l" src="/lab/img/deco-perche.png" alt="">
+    <img class="side-deco r" src="/lab/img/deco-claquete.png" alt="">
     <div class="content">
-      <h2>A sua próxima produção <em>começa numa conversa</em>.</h2>
-      <p class="body" style="margin:0 auto">Conte-nos o que produz, ou o que quer começar a produzir. Avaliamos o que precisa, dizemos com franqueza se podemos ajudar, e sugerimos um dia para a primeira sessão.</p>
-      <a class="btn" href="https://cal.com/afterec/discoverycall" target="_blank" rel="noopener">Marcar Sessão 1</a>
+      <h2 dir="rtl">إنتاجكم القادم <em>يبدأ بمحادثة</em>.</h2>
+      <p class="body" style="margin:0 auto" dir="rtl">أخبرونا ماذا تنتجون، أو ماذا تريدون أن تبدأوا بإنتاجه. نقيّم ما تحتاجونه، ونقول لكم بصراحة إن كنا نستطيع المساعدة، ونقترح يومًا للجلسة الأولى.</p>
+      <a class="btn" href="https://cal.com/afterec/discoverycall" target="_blank" rel="noopener">حجز الجلسة 1</a>
       <div class="contacts">
         <a href="mailto:before@afterec.com">before@afterec.com</a><br>
         +351 939 842 928
       </div>
-      <nav class="svcnav" aria-label="Outros serviços AfteREC">
-        <span>Outros serviços</span>
-        <a href="https://afterec.com/film/">Film</a>
-        <a href="https://afterec.com/real-estate/">Real Estate</a>
-        <a href="https://afterec.com/corporate/">Corporate</a>
+      <nav class="svcnav" aria-label="خدمات AfteREC الأخرى">
+        <span dir="rtl">خدمات أخرى</span>
+        <a href="https://afterec.com/ar/film/">Film</a>
+        <a href="https://afterec.com/ar/real-estate/">Real Estate</a>
+        <a href="https://afterec.com/ar/corporate/">Corporate</a>
       </nav>
     </div>
   </section>
@@ -559,7 +546,7 @@
 
 <nav class="dots" id="dots"></nav>
 
-<a class="downarrow" id="downarrow" href="#s2" title="Continuar">
+<a class="downarrow" id="downarrow" href="#s2" title="متابعة">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
 </a>
 
