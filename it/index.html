@@ -36,9 +36,7 @@
 <link rel="icon" type="image/svg+xml" href="/lab/img/favicon.svg">
 <link rel="icon" type="image/png" sizes="64x64" href="/lab/img/favicon.png">
 <link rel="apple-touch-icon" href="/lab/img/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/fonts/fonts.css">
 <style>
   :root{
     --bg:#161618;
@@ -394,6 +392,9 @@
   .topctl .langsw{position:static}
   .topctl .langmenu{left:0;right:auto}
   @media(max-width:860px){.topctl{top:1.1rem;left:1.1rem}}
+  .legalnav{margin-top:1.1rem;display:flex;align-items:center;justify-content:center;gap:.35rem .7rem;flex-wrap:wrap;font-size:.72rem;opacity:.72}
+  .legalnav a{color:inherit;text-decoration:none;border-bottom:1px solid transparent}
+  .legalnav a:hover,.legalnav a:focus-visible{border-color:currentColor}
 </style>
 </head>
 <body>
@@ -608,6 +609,7 @@
         <a href="https://afterec.com/it/real-estate/">Real Estate</a>
         <a href="https://afterec.com/it/corporate/">Corporate</a>
       </nav>
+      <nav class="legalnav" aria-label="Informação legal"><a href="https://afterec.com/privacidade">Privacy</a><span aria-hidden="true">·</span><a href="https://afterec.com/termos">Termini e condizioni</a><span aria-hidden="true">·</span><a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener">Livro de Reclamações</a></nav>
     </div>
   </section>
 
